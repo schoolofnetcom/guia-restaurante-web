@@ -1,0 +1,23 @@
+<div class="row" id="loginForm">
+    <div class="col offset-m3 m6 s12">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Autenticação</span>
+
+                <form (submit)="login($event)">
+                    <div class="input-field">
+                        <input type="email" placeholder="Seu email..." name="username" [(ngModel)]="user.username" id="email">
+                    </div>
+
+                    <div class="input-field">
+                        <input type="password" placeholder="Sua senha..." name="password" [(ngModel)]="user.password" id="password">
+                    </div>
+
+                    <div class="input-field">
+                        <input type="submit" value="Acessar" class="btn">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

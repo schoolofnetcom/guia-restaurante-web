@@ -1,3 +1,11 @@
+declare global {
+  interface Window { Materialize: any }
+}
+
+window.Materialize = window.Materialize || {};
+
+import 'materialize-css';
+
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 

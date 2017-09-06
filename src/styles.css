@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+body, app-root {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+a {
+    cursor: pointer;
+}
+
+table {
+    table-layout: fixed;
+}
+
+.photo-changer .material-icons {
+    font-size: 10rem;
+}
+
+.margin-bottom {
+    margin-bottom: 15px;
+}
+
+@media only screen and (min-width: 992px) {
+    table .col-short {
+        width: 10%;
+    }
+
+    table .table-rate {
+        width: 170px;
+    }
+}
+
+.footer-copyright {
+    text-align: center;
+}
