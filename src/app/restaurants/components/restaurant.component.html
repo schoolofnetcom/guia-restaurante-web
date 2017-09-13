@@ -1,0 +1,38 @@
+<div class="parallax-container">
+    <div class="parallax">
+        <img src="/assets/pizza.jpg">
+    </div>
+</div>
+<div class="row">
+    <form class="col s12 center-align" (submit)="search($event)">
+        <h3>Buscar restaurantes</h3>
+        <div class="input-field inline col offset-s2 s8">
+            <input type="text" placeholder="Buscar por endereço" name="address" class="validate" [(ngModel)]="address" required autofocus>
+            <input type="submit" value="buscar" class="btn">
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col s12" *ngIf="status === 'success'">
+        <div class="card horizontal" *ngFor="let address of restaurants">
+            <div class="card-image">
+                <img src="{{ address.restaurant.photo_full_url }}">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <span class="card-title">{{ address.restaurant.name }}</span>
+                    <p>{{ address.restaurant.description }}</p>
+                </div>
+                <div class="card-action">
+                    <a [routerLink]="['/restaurant/' + address.restaurant.id]">+ detalhes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 card amber center-align card-status" *ngIf="status === 'error'">
+        <div class="content">
+            Nenhum restaurante encontrado na sua região
+        </div>
+    </div>
+</div>

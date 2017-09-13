@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col s12 center-align">
+        <h3>{{ restaurant.name }}</h3>
+        <p><img src="{{ restaurant.photo_full_url }}" class="circle responsive-img" width="200"></p>
+        <h5>{{ restaurant.description }}</h5>
+        <p>
+            <a href="" class="btn" (click)="showPhone($event)">
+                <i class="material-icons left">phone</i> {{ viewPhone ? restaurant.phone : 'ver telefone' }}
+            </a>
+        </p>
+
+        <div *ngIf="restaurant.votes_qtd > 0; else noVotes">
+            <p>
+                <a href="" (click)="addVote($event, 1)">
+                    <i class="material-icons" [ngClass]="classToVotes(1)">star_border</i>
+                </a>
+                <a href="" (click)="addVote($event, 2)">
+                    <i class="material-icons" [ngClass]="classToVotes(2)">star_border</i>
+                </a>
+                <a href="" (click)="addVote($event, 3)">
+                    <i class="material-icons" [ngClass]="classToVotes(3)">star_border</i>
+                </a>
+                <a href="" (click)="addVote($event, 4)">
+                    <i class="material-icons" [ngClass]="classToVotes(4)">star_border</i>
+                </a>
+                <a href="" (click)="addVote($event, 5)">
+                    <i class="material-icons" [ngClass]="classToVotes(5)">star_border</i>
+                </a>
+            </p>
+            <p>{{ restaurant.votes_qtd }} votos</p>
+        </div>
+        <ng-template #noVotes>
+            <p>Este restaurante ainda não foi avaliado, seja o primeiro</p>
+            <a href="" class="btn" (click)="addVote($event, 0)">avaliar</a>
+        </ng-template>
+    </div>
+
+    <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s3"><a href="#cardapio">Cardápio</a></li>
+            <li class="tab col s3"><a href="#fotos">Fotos do restaurante</a></li>
+        </ul>
+    </div>
+    <div id="cardapio" class="col s12">
+        <div class="col s12 m4" *ngFor="let dish of dishes.data">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{ dish.photo_full_url }}">
+                    <span class="card-title">{{dish.name}}</span>
+                </div>
+                <div class="card-content">
+                    <p>{{dish.description}}</p>
+                    <hr>
+                    <p>R$ {{dish.price}}</p>
+                </div>
+            </div>
+            </div>
+    </div>
+    <div id="fotos" class="col s12">
+        <div class="col s3 margin-bottom" *ngFor="let photo of photos">
+            <img class="materialboxed responsive-img" width="650" src="{{photo.full_url}}">
+        </div>
+    </div>
+</div>
+
+<div id="votesModal" class="modal">
+    <div class="modal-content">
+        <h4>Votar</h4>
+        <form (submit)="sendVote($event)">
+            <select name="points" class="browser-default" [(ngModel)]="vote.points" required>
+                <option value="" disabled selected>Quantas estrelas este restaurante merece?</option>
+                <option value="1">1 estrela - Péssimo</option>
+                <option value="2">2 estrela - Ruim</option>
+                <option value="3">3 estrela - Bom</option>
+                <option value="4">4 estrela - Ótimo</option>
+                <option value="5">5 estrela - Excelente</option>
+            </select>
+
+            <div class="input-field">
+                <textarea name="comment" id="comment" class="materialize-textarea" required [(ngModel)]="vote.comment"></textarea>
+                <label for="comment">Envie sua opinião</label>
+            </div>
+
+            <div class="input-field">
+                <input type="submit" value="avaliar" class="btn">
+            </div>
+        </form>
+    </div>
+</div>

@@ -4,11 +4,12 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
+import { RestaurantsModule } from './restaurants/restaurants.module';
 import { UserModule } from './user/user.module';
 import { AppHttpService } from './app-http.service';
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/login', pathMatch: 'full'}
+  {path: '', redirectTo: '/search', pathMatch: 'full'}
 ];
 
 import { AppComponent } from './app.component';
@@ -22,7 +23,8 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule,
     UserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    RestaurantsModule
   ],
   providers: [
     AppHttpService
