@@ -85,10 +85,12 @@ export class AppHttpService {
                 }
 
                 window.Materialize.toast(message, 3000, 'red');
+
+                return err;
             });
     }
 
-    private getCookie(name: string) {
+    public getCookie(name: string) {
         let cookies = document.cookie;
         if (!cookies) {
             return null;

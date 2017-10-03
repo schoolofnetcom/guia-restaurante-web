@@ -1,18 +1,22 @@
 <ul id="slide-out" class="side-nav">
-  <li><div class="user-view">
-    <div class="background lime">
-      <img src="http://images.all-free-download.com/images/graphiclarge/wood_background_hd_picture_5_169842.jpg">
+  <li *ngIf="me !== null">
+    <div class="user-view">
+      <div class="background lime">
+        <img src="http://images.all-free-download.com/images/graphiclarge/wood_background_hd_picture_5_169842.jpg">
+      </div>
+      <a><img class="circle" src="https://secure.gravatar.com/avatar/beef4a109b5744b8b51537c0136f7e3b"></a>
+      <a><span class="white-text name">John Doe</span></a>
+      <a><span class="white-text email">jdandturk@gmail.com</span></a>
     </div>
-    <a><img class="circle" src="https://secure.gravatar.com/avatar/beef4a109b5744b8b51537c0136f7e3b"></a>
-    <a><span class="white-text name">John Doe</span></a>
-    <a><span class="white-text email">jdandturk@gmail.com</span></a>
-  </div></li>
+  </li>
   
   <li><div class="divider"></div></li>
-  <li [routerLinkActive]="['active']"><a class="subheader">Minha conta</a></li>
-  <li [routerLinkActive]="['active']"><a [routerLink]="['/profile']"><i class="material-icons">account_circle</i>Editar meus dados</a></li>
-  <li><a [routerLink]="['/password']"><i class="material-icons">security</i>Trocar senha</a></li>
-  <li><a [routerLink]="['/logout']"><i class="material-icons">cancel</i>sair</a></li>
+  <li *ngIf="me === null"><a [routerLink]="['/login']">Acessar</a></li>
+  <li *ngIf="me === null"><a [routerLink]="['/register']">Registrar-se</a></li>
+  <li *ngIf="me !== null" [routerLinkActive]="['active']"><a class="subheader">Minha conta</a></li>
+  <li *ngIf="me !== null" [routerLinkActive]="['active']"><a [routerLink]="['/profile']"><i class="material-icons">account_circle</i>Editar meus dados</a></li>
+  <li *ngIf="me !== null"><a [routerLink]="['/password']"><i class="material-icons">security</i>Trocar senha</a></li>
+  <li *ngIf="me !== null"><a [routerLink]="['/logout']"><i class="material-icons">cancel</i>sair</a></li>
 </ul>
 
 <header>
