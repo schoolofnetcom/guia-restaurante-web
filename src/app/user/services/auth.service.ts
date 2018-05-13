@@ -14,6 +14,9 @@ export class AuthService extends AppHttpService {
     }
 
     getUser() {
+        if (!super.getCookie('token')) {
+            return new Promise((resolve) => resolve);
+        }
         return this.builder('/me')
             .list();
     }

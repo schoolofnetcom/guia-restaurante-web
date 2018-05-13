@@ -19,6 +19,7 @@ export class AppComponent {
     this.authService.eventEmitter.subscribe(() => {
       this.getUserData();
     });
+    this.getUserData();
   }
 
   protected getUserData() {
