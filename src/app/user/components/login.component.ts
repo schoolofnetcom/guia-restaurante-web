@@ -18,7 +18,7 @@ export class LoginComponent {
         password: null,
     };
 
-    constructor(private AuthService: AuthService, private router: Router) {}
+    constructor(private authService: AuthService, private router: Router) {}
 
     login(e) {
         e.preventDefault();
@@ -28,7 +28,7 @@ export class LoginComponent {
             return;
         }
 
-        let data = {
+        const data = {
             grant_type: 'password',
             client_id: environment.client_id,
             client_secret: environment.client_secret,
@@ -37,10 +37,10 @@ export class LoginComponent {
             scope: ''
         };
 
-        this.AuthService.login(data).then((res) => {
-            document.cookie = "token=" + res.access_token + "; expires=" + res.expires_in;
-            this.AuthService.setAccessToken();
-            this.router.navigate(['/']);
-        })
+        this.authService.login(data)
+            .then((res) => {
+                this.router.navigate(['/']);
+            });
+
     }
 }

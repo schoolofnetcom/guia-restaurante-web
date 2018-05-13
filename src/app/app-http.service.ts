@@ -18,9 +18,12 @@ export class AppHttpService {
         return this.http;
     }
 
-    setAccessToken () {
-        let token = this.getCookie('token');
-        this.header = new Headers({'Authorization': 'Bearer ' + token, 'Accept': 'application/json'});
+    setAccessToken() {
+        return new Promise((resolve, reject) => {
+            const token = this.getCookie('token');
+            this.header = new Headers({ 'Authorization': 'Bearer ' + token, 'Accept': 'application/json' });
+            resolve();
+        });
     }
 
     builder (resource: string) {
@@ -32,10 +35,10 @@ export class AppHttpService {
         let url = this.url;
 
         if (options.filters !== undefined) {
-            let filters = options.filters;
-            filters.forEach((item, index) => {  
-                let field = Object.keys(item)[0];
-                let value = item[field];
+            const filters = options.filters;
+            filters.forEach((item, index) => {
+                const field = Object.keys(item)[0];
+                const value = item[field];
                 url = url + '?where[' + field + ']=' + value;
             });
         }
